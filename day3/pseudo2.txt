@@ -1,0 +1,20 @@
+We can borrow our part 1 algorithm to find, instead of symbols, digits. 
+
+The file is small enough, so we can first iterate and find all numbers and add them in a list as tuples.
+The tuple will have as index 0 a string that is ex. "35-37" that locates the index position of the number.
+Second element will be the number itself in string format.
+
+For each * in the file, we can use the same neighbor searching algorithm except the logic is reduced.
+This is because * does not have x length; x = 1, always.
+
+When numbers are searched, we can establish categories. For example, suppose we find three neighbors "upstairs".
+Let's first establish a set in python (so no duplicates).
+The up numbers might be in index 36, 37, and 38. We search each number in the lists from the tuples' [0].
+For each match, we add the corresponding tuple[1] to the set. In this case we would add two same numbers and one different.
+We repeat this for current and bottom line too - although in this case we don't need to because there is none.
+
+The set's length will be 2. So even though we found 3 numbers, there is exactly 2, which fits requirement.
+
+We then multiply all elements in the set since there are two elements. We then add that number to a global sum.
+
+To add, we need to distinguish the indices by having n different lists of numbers for each line

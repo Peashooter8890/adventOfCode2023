@@ -1,0 +1,4 @@
+            for num in currentNums:
+                for lineNum in lineNums[i]:
+                    if int(num) > lineNum[0] and int(num) < lineNum[1]:
+                        numbers.add(int(num))

@@ -79,11 +79,11 @@ def computeTrebuchet2(line):
     
     return int(answer)
 
-__location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
+location = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
 
 def part1():
     sum = 0
-    with open(os.path.join(__location__, 'trebuchet.txt'), "r") as file:
+    with open(os.path.join(location, 'trebuchet.txt'), "r") as file:
         for line in file:
             sum += computeTrebuchet(line)
     print(sum)
@@ -91,7 +91,7 @@ def part1():
 def part2():
     # should print 613
     sum = 0
-    with open(os.path.join(__location__, 'trebuchet.txt'), "r") as file:
+    with open(os.path.join(location, 'trebuchet.txt'), "r") as file:
         for line in file:
             sum += computeTrebuchet2(line)
     print(sum)

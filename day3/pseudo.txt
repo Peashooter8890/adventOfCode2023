@@ -1,0 +1,29 @@
+Let's think for a moment. 
+
+First, you should check if number is too left or too right. Each of these can be variables.
+
+*****
+*365*
+*****
+
+****
+*36*
+****
+
+***
+*3*
+***
+
+The mathematical pattern seems to be that you want to repeat 
+(left - 1, ((len(char) + 1) - right)) times, given that
+left and right being true should be a value of 1. 
+
+For checking current line:
+
+*365*
+*36*
+*3*
+
+Checking left is always index - 1
+
+What about right? it is index + len(char)
