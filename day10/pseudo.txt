@@ -1,0 +1,30 @@
+We can use some kind of DFS, if that's what it's called?
+
+Basically, I want to choose one direction, explore the furthest. 
+
+When I choose one direction, that direction will then have multiple directions - 
+I store those and keep exploring one, when it ends, repeat on the furthest one, etc
+
+So how do we code this?
+
+start at S. 
+
+search neighbor tiles that I haven't searched yet.
+    add all neighbor traversable tiles to unsearched.
+    choose a random highest index traversable tile and go on it. 
+    If that tile is already on a path somewhere, then compare and potentially add its index to highest-yet.
+    In any case, remove it from unsearched and make its own path and add to paths.
+
+Now that I think about it - BFS might be better. Let's use BFS.
+
+Let's use dictionary hash map. There seems to be less than 19600 entries so that should be fine.
+
+How to get neighbors?
+
+F, L, -, |, J, 7
+
+How about we first start with a simple model of just traversing without thinking there are multiple paths?
+
+My problem when solving problems is that I start off too complicated
+
+It's best to start off with something very simple and small

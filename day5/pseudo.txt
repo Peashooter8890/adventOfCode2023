@@ -1,0 +1,3 @@
+list = that.
+
+list = [x for x.rstrip()]
