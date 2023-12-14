@@ -1,0 +1,33 @@
+I want to figure out how to calculate shortest path in a 2d grid without looking it up.
+
+...#......
+.......#..
+#.........
+..........
+......#...
+.#........
+.........#
+..........
+.......#..
+#...#.....
+
+I'm pretty sure that you can just... move until <width> and then move until <height>, vice versa
+It doesn't seem that complicated. Let's just try that out.
+
+Because the steps are discrete, distance formula probably won't work...
+
+i = 0 v 2
+j = 3 v 0
+
+The steps are simply |i_1-i_0| + |j_1-j_0|??
+
+Let's do more test cases
+
+8 steps.
+
+0 v 7
+2 v 1
+
+-7, 1 = 8
+
+Yes, that should be it.
