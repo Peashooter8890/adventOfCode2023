@@ -1,30 +1,34 @@
-We can use some kind of DFS, if that's what it's called?
+I replaced everything that's not a main loop enclosure with 0. 
+I then replaced main enclosure with easier to see symbols.
 
-Basically, I want to choose one direction, explore the furthest. 
+Working everything out manually is boring. Yet I am tempted to do so.
 
-When I choose one direction, that direction will then have multiple directions - 
-I store those and keep exploring one, when it ends, repeat on the furthest one, etc
+The main problem is that it's hard to highlight the parts that's inside the main enclosure. 
+Things right outside the encloure looks like it might be inside the enclosure. 
 
-So how do we code this?
+So how do we highlight or denote areas that are inside main enclosure?
 
-start at S. 
+Here is the thing:
 
-search neighbor tiles that I haven't searched yet.
-    add all neighbor traversable tiles to unsearched.
-    choose a random highest index traversable tile and go on it. 
-    If that tile is already on a path somewhere, then compare and potentially add its index to highest-yet.
-    In any case, remove it from unsearched and make its own path and add to paths.
+└S┐
 
-Now that I think about it - BFS might be better. Let's use BFS.
+Either top of S OR bottom of S is inside or outside the enclosure. It cannot be both. 
+I'm not sure how to mathematically prove this, but that's my hypothesis. It CANNOT be both. 
 
-Let's use dictionary hash map. There seems to be less than 19600 entries so that should be fine.
+We already have 0's on edges that we know are outside the loop. 
 
-How to get neighbors?
+We can try both approaches out and test it using these 0's - then it will make clear which one is outside and inside. 
 
-F, L, -, |, J, 7
+Now, how to do this? Let's say that we assume the upper part of S is enclosed. 
+Then with S┐, we can mark ┐ as signifying left. Meaning, the left is enclosed. We go step by step marking left, right, up, bottom.
 
-How about we first start with a simple model of just traversing without thinking there are multiple paths?
+We can then test the outer 0's. If the outer 0 is next to a block that signifies "right", then our choice is wrong and the other is right.
+Vice versa.
 
-My problem when solving problems is that I start off too complicated
+To signify these directions, we can use cardinal directions. NSEW will signify such. 
 
-It's best to start off with something very simple and small
+| will be E/W. | will be N/S. 
+
+For 90 degree bends, we can just use the original mapping of the challenge.
+
+My hypothesis will be following S┐ and assuming the right of ┐ is enclosed. We can code this therefore.

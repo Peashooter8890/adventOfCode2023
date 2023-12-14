@@ -1,9 +1,12 @@
 import os
 location = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
 allTiles = {}
+loopTiles = []
 
 def traverse(direction, tile, index):
+    global loopTiles
     while True:
+        loopTiles.append(tile)
         tileValue = allTiles[tile]
         i, j = tile[0], tile[1]
         if tileValue == 'S':
@@ -50,9 +53,8 @@ def traverse(direction, tile, index):
 
 with open(os.path.join(location, 'pipeMaze.txt'), 'r') as f:
     start = None
-    # apparently _ is a conventional name for a variable whose name will not be used
     maxI = sum(1 for _ in f)
-    f.seek(0) # reset file pointer because the file is already all read now
+    f.seek(0)
     maxJ = len(f.readline())
     f.seek(0)
     for i, line in enumerate(f):
@@ -61,14 +63,30 @@ with open(os.path.join(location, 'pipeMaze.txt'), 'r') as f:
                 allTiles[(i,j)] = char
             if char == 'S':
                 start = (i,j)
-
-    # I can use ctrl + f to find what the two valid neigbors of S is. 
-    # Those neighbors are to the left and to the right precisely. Start with left. Just do DFS.
-    # With DFS, complete loop, then round up steps / 2.
-    # Therefore I shall do this part manually.
+    f.seek(0)
 
     tile = (start[0], start[1]-1)
     index = 1
     steps = traverse('left', tile, index)
 
-print(round(steps/2.0))
+with open(os.path.join(location, 'pipeMaze2.txt'), 'w') as nf:
+    with open(os.path.join(location, 'pipeMaze.txt'), 'r') as f:
+        for i, line in enumerate(f):
+            newLine = ''
+            for j, char in enumerate(line):
+                if (i, j) in loopTiles:
+                    if char == "F":
+                        newLine += "┌"
+                    elif char == "7":
+                        newLine += "┐"
+                    elif char == "L":
+                        newLine += "└"
+                    elif char == "J":
+                        newLine += "┘"
+                    else:
+                        newLine += char
+                elif char != '\n':
+                    newLine += '0'
+                else:
+                    newLine += '\n'
+            nf.write(newLine)
